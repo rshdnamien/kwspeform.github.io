@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- html2pdf CDN-->
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js">
+	</script>
+
+	<style>
+
+		.card {
+			<!--box-sizing: content-box;-->
+			width: 100%;
+			height: auto; /* 100% of the viewport height */
+			<!--padding: 30px;-->
+			border: none;
+			font-style: sans-serif;
+			background-color: #f0f0f0;
+			overflow: hidden;
+		}
+
+		#button {
+			background-color: #4caf50;
+			border-radius: 5px;
+			margin-left: 650px;
+			margin-bottom: 5px;
+			color: white;
+		}
+
+		h2 {
+			text-align: center;
+			color: #24650b;
+		}
+		body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+			font-size: 12px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        h3, h4 {
+            color: #333;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        input[type="checkbox"] + label {
+            margin-right: 15px;
+        }
+
+        input[type="checkbox"]:checked + label {
+            font-weight: bold;
+            color: #007bff; /* Blue color for checked checkboxes */
+        }
+
+        label[for="KWSP"] {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        input[type="radio"],
+        label {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* this code for radio button */
+        .container {
+            text-align: center;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+			margin-left: auto; /* Set left margin to auto for centering */
+			margin-right: auto; /* Set right margin to auto for centering */
+
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Add styling for checkboxes */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-container input {
+            margin-right: 2px;
+        }
+	</style>
+</head>
+
+<body>
+		<button id="button">Generate PDF</button>
+		<div class="card" id="makepdf">
+<form action="form.php" method="post">
+        <img src="Logo_KWSP.jpg" width="100" height="100">
+        <label for="KWSP">KUMPULAN WANG SIMPANAN PEKERJA</label>
+        <h3>SENARAI SEMAK JURUTERA MESINIAGA BAGI:</h3>
+
+	<!-- Add this container div around the radio buttons and labels -->
+	<div class="container">
+    	<input type="radio" id="option1" name="options" value="option1">
+    	<label for="option1">PC</label>
+
+    	<input type="radio" id="option2" name="options" value="option2">
+    	<label for="option2">Notebook</label>
+	</div>
+
+
+        <h3>STIKER - Notebook: Tampal pada bahagian BAWAH Notebook / PC: Tampal pada tepi CPU</h3>
+        <h4> Pastikan maklumat pc/nb ditulis dengan lengkap dan jelas pada stiker</h4>
+
+        <label for="jabatan">Jabatan / Spoke:</label>
+        <input type="text" id="jabatan" name="jabatan" required>
+
+        <label for="noTalianPengguna">No Talian Pengguna:</label>
+        <input type="text" id="noTalianPengguna" name="noTalianPengguna" required>
+
+        <br></br>
+
+        <label for="namaPengguna">Nama Pengguna:</label>
+        <input type="text" id="namaPengguna" name="namaPengguna" required>
+
+        <label for="TarikhMula">Tarikh Mula:</label>
+        <input type="text" id="TarikhMula" name="noTalianPengguna" required>
+
+        <br></br>
+
+        <label for="noAnggota">No. Anggota:</label>
+        <input type="text" id="noAnggota" name="noAnggota" required>
+
+        <label for="WaktuMula">Waktu Mula:</label>
+        <input type="text" id="WaktuMula" name="WaktuMula" required>
+
+        <br></br>
+
+        <label for="newHostName">New Host Name/ PC Name:</label>
+        <input type="text" id="newHostName" name="newHostName" required>
+
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required>
+
+        <br></br>
+
+        <label for="oldHostName">Old Host Name/ PC Name:</label>
+        <input type="text" id="oldHostName" name="oldHostName" required>
+
+        <label for="serialNo">Serial Number:</label>
+        <input type="text" id="serialNo" name="serialNo" required>
+
+        <br></br>
+
+        <label for="noInventoriKWSP">No Inventori KWSP (NEW):</label>
+        <input type="text" id="noInventoriKWSP" name="noInventoriKWSP" required>
+
+        <br></br>
+
+        <label for="noInventoriKWSP">Old IP:</label>
+        <input type="text" id="noInventoriKWSP" name="noInventoriKWSP" required>
+        <label for="noInventoriKWSP">Old MAC:</label>
+        <input type="text" id="noInventoriKWSP" name="noInventoriKWSP" required>
+        <br>
+        <label for="noInventoriKWSP">New IP:</label>
+        <input type="text" id="noInventoriKWSP" name="noInventoriKWSP" required>
+        <label for="noInventoriKWSP">New MAC:</label>
+        <input type="text" id="noInventoriKWSP" name="noInventoriKWSP" required>
+
+        <br>
+        <h4> Pengesahan Penerimaan Peralatan Pengguna </h4>
+
+        <label for="notebook">Notebook:</label>
+        <input type="checkbox" id="option1" name="option1" value="checked">
+        <label for="option1">Notebook</label>
+
+        <input type="checkbox" id="option2" name="option2" value="checked">
+        <label for="option1">Carry case(Bag 1)</label>
+
+        <input type="checkbox" id="option3" name="option3" value="checked">
+        <label for="option1">Lenovo Bag Pack(Bag 2)</label>
+
+        <input type="checkbox" id="option4" name="option4" value="checked">
+        <label for="option1">Mouse</label>
+        
+        <input type="checkbox" id="option5" name="option5" value="checked">
+        <label for="option1">Power Adapter</label>
+
+        <input type="checkbox" id="option6" name="option6" value="checked">
+        <label for="option1">Lock (Kunci)</label>
+
+        <input type="checkbox" id="option7" name="option7" value="checked">
+        <label for="option1">Network Dongle</label>
+        <br></br>
+        <label for="notebook">DESKTOP PC:</label>
+        <input type="checkbox" id="option1" name="option1" value="checked">
+        <label for="option1">CPU</label>
+
+        <input type="checkbox" id="option2" name="option2" value="checked">
+        <label for="option1">Monitor</label>
+
+        <input type="checkbox" id="option3" name="option3" value="checked">
+        <label for="option1">Keyboard</label>
+
+        <input type="checkbox" id="option4" name="option4" value="checked">
+        <label for="option1">Mouse</label>
+        <br>
+
+    </form>
+
+	<!--</div>-->
+	
+		<h4>BAHAGIAN A- Jurutera dikehendaki memenuhi ruangan ini(pastikan pengguna membuat ujian yang disenaraikan sebelum menanda senarai semak)</h4>
+	<table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Aktiviti</th>
+                <th>Status</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Check PC/Notebook Bios. If prompt message "Checking Media Presence".</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes1" name="status1" value="Yes">
+                    <label for="statusYes1">Yes</label>
+
+                    <input type="checkbox" id="statusNo1" name="status1" value="No">
+                    <label for="statusNo1">No</label>
+
+                    <input type="checkbox" id="statusNA1" name="status1" value="N/A">
+                    <label for="statusNA1">N/A</label>
+                </td>
+                <td>Please refer Guideline How to fix issue Checking Media Presence</td>
+            </tr>
+		<tr>
+                <td>2</td>
+                <td>Make sure Hard Disk partition has been created into two partitions which is C: (60%) & D: (40%).</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>NB: C: (300GB) & D: (200GB)</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Change the computer name to the new Hostname</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Check PC/Notebook get the internal network</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>For HQ Kwasa, share MAC address to DTD for bypass</td>
+            </tr><tr>
+                <td>5</td>
+                <td>Join Domain "kwsp.local"</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>After join please inform EPF Internal IT to push Domain Group 			Policy</td>
+            </tr><tr>
+                <td>6</td>
+                <td>Verify windows 10 Pro Version is 21H1 (OS Build 19043) and license is 		activated</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Windows license automatically activated after join domain</td>
+            </tr><tr>
+                <td>7</td>
+                <td>Run Win10 22H2 patches and verify the OS version change to Win10 22H2</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>8</td>
+                <td>Install System Centre Configuration Manager Client (SCCM) </td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Please Refer Guideline</td>
+            </tr><tr>
+                <td>9</td>
+                <td>Install Symantec Endpoint Encryption (SEE), only for notebook</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Please Refer Guideline</td>
+            </tr><tr>
+                <td>10</td>
+                <td>Install Symantec Endpoint Protection (SEP)</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Please Refer Guideline</td>
+            </tr><tr>
+                <td>11</td>
+                <td>Install DLP  *advisable to do on last step</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Please Refer Guideline</td>
+            </tr><tr>
+                <td>12</td>
+                <td>Install and Configure Pulse Secure VPN</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Please Refer Guideline</td>
+            </tr><tr>
+                <td>13</td>
+                <td>Disable the Juniper Network Service</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>14</td>
+                <td>Install Zoom</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>15</td>
+                <td>Install GINA, re-install NetIQ and re-install Fire Eye with latest version</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Please Refer Guideline</td>
+            </tr><tr>
+                <td>16</td>
+                <td>Install NAC</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Please Refer Guideline</td>
+            </tr><tr>
+                <td>17</td>
+                <td>Install MS Teams</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>18</td>
+                <td>Configure Flexshare</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>19</td>
+                <td>(Old PC/Notebook) Make sure user already backup their data follow <br> the EPF DTD (panduan backup Data dan Email Archive)</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>If the backup size is more than 50GB or all the backup <br> is not done please escalate to EPF DTD</td>
+            </tr><tr>
+                <td>20</td>
+                <td>Please check the non standard software installed in old pc/nb</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>copy all the non standard </td>
+            </tr><tr>
+                <td>21</td>
+                <td>Ask User to login to create User Profile</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>22</td>
+                <td>Transfer all the folders backup (including email archive) into the new PC/Notebook</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>23</td>
+                <td>Upgrade the Microsoft Office 2016 STD to Microsoft Office 2016 Pro <br> (If the User grades G24/E1 and above)</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>If the user grades below G24 please remain with Microsoft Office 2016 STD</td>
+            </tr><tr>
+                <td>24</td>
+                <td>Unpin all icons in Start Menu Tiles</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>25</td>
+                <td>Ensure Microsoft Edge icon on Desktop and Taskbar and set as default browser</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Microsoft Edge is now default browser</td>
+            </tr><tr>
+                <td>26</td>
+                <td>Place IT Service Portal shortcut in Public Desktop</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>27</td>
+                <td>Run HanTrust #KWSP4ever</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>28</td>
+                <td>Set default pdf file using adobe reader</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+                <td>29</td>
+                <td>Disable/uninstall games & unwanted programs</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Example: Game Bar, Xbox, Microsoft Solitaire Collection, Lenovo Vantage</td>
+            </tr><tr>
+		<td>30</td>
+                <td>Please check computer Management - Local Users and Groups for; <br><br>i) Users - local id <br>ii) Groups - ConfigMgr Remote Control Users</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>i. Remove ID "Mesiniaga" & others ID<br>
+-only epfadm, kwsp, DefaultAccount, <br> epfguest, WDAGUtilityAccount are allowed in "Users" <br><br>ii. Remove other ID/Group<br>
+-Ensure only Desktop_SCCM_Admin in the Group.</td>
+            </tr><tr>
+		<td>31</td>
+                <td>Copy BDS Icon into Public Desktop folder (different link for each spoke)</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Please refer PIC for the correct BDS icon.</td>
+            </tr><tr>
+		<td>32</td>
+                <td>Compatability View - Turn Off</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+		<td>33</td>
+                <td>Setup Printer</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Setting paper to A4 (Pls refer existing old PC)</td>
+            </tr><tr>
+		<td>34</td>
+                <td>Setup Scanner</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+		<td>35</td>
+                <td>Setup Thumbprint Scanner (Counter only)</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+		<td>36</td>
+                <td>Setup Bar Code Machine, (Only for Backend counter)</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+		<td>37</td>
+                <td>Setup Quebee, (Only for Counter)</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td></td>
+            </tr><tr>
+		<td>38</td>
+                <td>Ensure NO folder is shared at both machines (OLD & NEW)</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Please remove by using "Stop Sharing"</td>
+            </tr><tr>
+		<td>39</td>
+                <td>Ensure remove permission ID "Mesiniaga" on shared folder at both macbines (OLD & NEW)</td>
+                <td class="checkbox-container">
+                    <input type="checkbox" id="statusYes2" name="status2" value="Yes">
+                    <label for="statusYes2">Yes</label>
+
+                    <input type="checkbox" id="statusNo2" name="status2" value="No">
+                    <label for="statusNo2">No</label>
+
+                    <input type="checkbox" id="statusNA2" name="status2" value="N/A">
+                    <label for="statusNA2">N/A</label>
+                </td>
+                <td>Remove by right click on folder > Properties > Security > <br> Edit > Remove ID "Mesiniaga" > Apply</td>
+            </tr><tr>
+        </tbody>
+    </table>
+<br><h4>Akaun Jurutera</h4>
+<td>Saya dengan ini mengesahkan konfigurasi telah dilakukan mengikut senarai semakan di atas dan PC/Notebook adalah beroperasi dengan baik.</td>
+<br><br>
+	<label for="namaJurutera">Nama Jurutera:</label>
+        <input type="text" id="namaPengguna" name="namaPengguna" required>
+
+        <label for="WaktuTamat">Waktu Tamat:</label>
+        <input type="text" id="TarikhMula" name="noTalianPengguna" required>
+	<label for="Tandatangan">Tandatangan:</label>
+        <input type="text" id="signature" name="signature" placeholder="Type or draw your signature" required>
+	 <br></br>
+    </form>
+		</div>
+
+
+ <script>
+        let button = document.getElementById("button");
+        let makepdf = document.getElementById("makepdf");
+
+        button.addEventListener("click", function () {
+            // Configuration for html2pdf
+            const options = {
+                margin: 10,
+                filename: 'generated-document.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Generate PDF directly from the document body
+            html2pdf().from(makepdf).set(options).save();
+        });
+    </script>
+</body>
+</html>
