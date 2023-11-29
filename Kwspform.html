@@ -274,7 +274,7 @@
                 <td>1</td>
                 <td>Check PC/Notebook Bios. If prompt message "Checking Media Presence".</td>
                 <td class="checkbox-container">
-                    <input type="checkbox" id="statusYes1" name="status1" value="Yes">
+                    <input type="checkbox" id="statusYes1" name="status1" value="Yes" onclick="handleCheckboxClick('statusYes1')">
                     <label for="statusYes1">Yes</label>
 
                     <input type="checkbox" id="statusNo1" name="status1" value="No">
@@ -824,6 +824,23 @@
             </tr><tr>
         </tbody>
     </table>
+	<script>
+		// Function to handle checkbox click events
+    		function handleCheckboxClick(checkboxId) {
+      		// Uncheck all checkboxes
+      		uncheckAllCheckboxes();
+
+      		// Check the clicked checkbox
+      		document.getElementById(checkboxId).checked = true;
+    		}
+		// Function to uncheck all checkboxes
+    		function uncheckAllCheckboxes() {
+      		var checkboxes = document.querySelectorAll('[name="status2"]');
+      		checkboxes.forEach(function(checkbox) {
+        		checkbox.checked = false;
+      		});
+    	}
+  	</script>
 <br><h4>Akaun Jurutera</h4>
 <td>Saya dengan ini mengesahkan konfigurasi telah dilakukan mengikut senarai semakan di atas dan PC/Notebook adalah beroperasi dengan baik.</td>
 <br><br>
