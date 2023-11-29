@@ -826,16 +826,16 @@
     </table>
 	<script>
 		// Function to handle checkbox click events
-    		function handleCheckboxClick(checkboxId) {
+    		function handleCheckboxClick(checkboxName, checkboxId) {
       		// Uncheck all checkboxes
-      		uncheckAllCheckboxes();
+      		uncheckAllCheckboxes(checkboxName);
 
       		// Check the clicked checkbox
       		document.getElementById(checkboxId).checked = true;
     		}
 		// Function to uncheck all checkboxes
-    		function uncheckAllCheckboxes() {
-      		var checkboxes = document.querySelectorAll('[name="status2"]');
+    		function uncheckAllCheckboxes(checkboxName) {
+      		var checkboxes = document.querySelectorAll('[name="' + checkboxName + '"]');
       		checkboxes.forEach(function(checkbox) {
         		checkbox.checked = false;
       		});
