@@ -5,6 +5,7 @@
 	<script src=
 "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js">
 	</script>
+	<script src="https://unpkg.com/signature_pad"></script>
 
 	<style>
 
@@ -850,7 +851,17 @@
         <label for="WaktuTamat">Waktu Tamat:</label>
         <input type="text" id="TarikhMula" name="noTalianPengguna" required>
 	<label for="Tandatangan">Tandatangan:</label>
-        <input type="text" id="signature" name="signature" placeholder="Type or draw your signature" required>
+  	<!-- Create a canvas for drawing -->
+  	<canvas id="signatureCanvas" style="border: 1px solid #ccc;"></canvas>
+
+  	<!-- Hidden input to store the signature data -->
+  	<input type="hidden" id="signature" name="signature">
+
+  	<!-- Add a button to clear the signature -->
+  	<button type="button" onclick="clearSignature()">Clear Signature</button>
+	
+	<!--<label for="Tandatangan">Tandatangan:</label>
+        <input type="text" id="signature" name="signature" placeholder="Type or draw your signature" required>-->
 	 <br></br>
     </form>
 			<button id="button">Generate PDF</button>
@@ -875,5 +886,20 @@
             html2pdf().from(makepdf).set(options).save();
         });
     </script>
+	<script>
+    		// Initialize SignaturePad
+   		var canvas = document.getElementById('signatureCanvas');
+    		var signaturePad = new SignaturePad(canvas);
+
+    		// Function to clear the signature
+    		function clearSignature() {
+      			signaturePad.clear();
+    		}
+
+    		// Add an event listener to update the hidden input with signature data
+    		signaturePad.onEnd = function () {
+      		document.getElementById('signature').value = signaturePad.toDataURL();
+    	};
+  </script>
 </body>
 </html>
